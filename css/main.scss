@@ -13,6 +13,10 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
+a {
+	color: #216fc9
+}
+
 .single-page {
 	padding: 40px 0;
 }
@@ -87,8 +91,6 @@ table.table-responsive.table-bordered {
 
 .anchor {
 	display: block;
-	padding-top: 100px;
-	margin-top: -100px;
 }
 
 pre[class=highlight] {
@@ -421,7 +423,7 @@ pre[class=highlight] {
 	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	.lsp-navbar {
 		position: -webkit-sticky;
 		position: sticky;
@@ -437,6 +439,21 @@ pre[class=highlight] {
 		height: calc(100vh - 110px);
 		overflow: auto;
 	}
+
+	#markdown-content-container .anchor {
+		scroll-margin-top: 60px;
+	}
+}
+
+@media (max-width: 991px) {
+	.lsp-sidebar {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+.lsp-sidebar .card {
+	padding-top: 1px;
 }
 
 .navbar-brand h1 {
@@ -450,19 +467,25 @@ pre[class=highlight] {
 }
 
 .nav .nav-link {
-	color: #2753e3 !important;
+	color: #206bc6 !important;
   }
 
 .nav .nav-link:hover {
 	color: #1034a8 !important;
 }
 
-a {
-	color: #2753e3;
+code.highlighter-rouge a {
+	color: #bd4147;
+	font-weight: bold;
+}
+
+a h3, h3 a, h4 a {
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 a:hover {
-	color: #1034a8
+	color: #1034a8;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -474,4 +497,19 @@ a:hover {
 		display: inline-block;
 		font-size: 14px;
 	}
+}
+
+.anchorHolder {
+	position: relative;
+}
+
+.linkableAnchor {
+	display: block;
+	position: absolute;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+	z-index: -1;
+	top: -60px;
+	left: 0;
 }

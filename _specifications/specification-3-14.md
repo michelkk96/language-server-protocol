@@ -1,12 +1,12 @@
 ---
 title: Specification
-shortTitle: 3.14 - Previous
+shortTitle: 3.14 (Previous)
 layout: specifications
 sectionid: specification-3-14
 toc: specification-3-14-toc
+fullTitle: Language Server Protocol Specification - 3.14
 index: 1
 ---
-# Language Server Protocol Specification - 3.14
 
 This document describes version 3.14.x of the language server protocol. An implementation for node of the 3.14.x version of the protocol can be found [here](https://github.com/Microsoft/vscode-languageserver-node).
 
@@ -239,7 +239,7 @@ export const EOL: string[] = ['\n', '\r\n', '\r'];
 
 #### Position
 
-Position in a text document expressed as zero-based line and zero-based character offset. A position is between two characters like an 'insert' cursor in a editor. Special values like for example `-1` to denote the end of a line are not supported.
+Position in a text document expressed as zero-based line and zero-based character offset. A position is between two characters like an 'insert' cursor in an editor. Special values like for example `-1` to denote the end of a line are not supported.
 
 ```typescript
 interface Position {
@@ -2559,7 +2559,7 @@ export interface ApplyWorkspaceEditResponse {
 
 The document open notification is sent from the client to the server to signal newly opened text documents. The document's truth is now managed by the client and the server must not try to read the document's truth using the document's Uri. Open in this sense means it is managed by the client. It doesn't necessarily mean that its content is presented in an editor. An open notification must not be sent more than once without a corresponding close notification send before. This means open and close notification must be balanced and the max open count for a particular textDocument is one. Note that a server's ability to fulfill requests is independent of whether a text document is open or closed.
 
-The `DidOpenTextDocumentParams` contain the language id the document is associated with. If the language Id of a document changes, the client needs to send a `textDocument/didClose` to the server followed by a `textDocument/didOpen` with the new language id if the server handles the new language id as well.
+The `DidOpenTextDocumentParams` contain the language id the document is associated with. If the language id of a document changes, the client needs to send a `textDocument/didClose` to the server followed by a `textDocument/didOpen` with the new language id if the server handles the new language id as well.
 
 _Notification_:
 * method: 'textDocument/didOpen'
@@ -2855,8 +2855,11 @@ _Response_:
  */
 interface CompletionList {
 	/**
-	 * This list it not complete. Further typing should result in recomputing
+	 * This list is not complete. Further typing should result in recomputing
 	 * this list.
+	 *
+	 * Recomputed lists have all their items replaced (not appended) in the
+	 * incomplete completion sessions.
 	 */
 	isIncomplete: boolean;
 
